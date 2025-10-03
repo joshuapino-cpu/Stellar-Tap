@@ -75,3 +75,24 @@ header {
   from { opacity: 1; transform: translateY(0); }
   to { opacity: 0; transform: translateY(-50px); }
 }
+.shop {
+  margin-top: 2rem;
+  background: #1e1b4b;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #9333ea;
+}
+.shop h2 {
+  margin-bottom: 1rem;
+}
+.upgrade {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+}
+.upgrade:hover { background: #3b82f6; }

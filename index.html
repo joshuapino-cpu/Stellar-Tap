@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stellar Tap v0.1</title>
+  <title>Stellar Tap v0.2</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -13,7 +13,7 @@
       <h1>Stellar Tap 🌌</h1>
       <p>Haz clic y recolecta estrellas.</p>
       <button id="play-btn" class="primary">Jugar</button>
-      <p class="version">Versión 0.1</p>
+      <p class="version">Versión 0.2</p>
     </div>
   </div>
 
@@ -25,10 +25,19 @@
     </header>
 
     <section class="play-area">
-      <button id="planet-btn" class="planet" aria-label="Planeta">
-        🌍
-      </button>
+      <button id="planet-btn" class="planet" aria-label="Planeta">🌍</button>
       <div id="effects" class="effects"></div>
+    </section>
+
+    <section class="shop">
+      <h2>Mejoras</h2>
+      <button id="upgrade-click" class="upgrade">
+        Aumentar Poder de Clic (Costo: <span id="click-cost">10</span>)
+      </button>
+      <button id="upgrade-auto" class="upgrade">
+        Comprar Satélite (Costo: <span id="auto-cost">50</span>)
+      </button>
+      <p>Satélites activos: <span id="auto-count">0</span></p>
     </section>
   </main>
 
