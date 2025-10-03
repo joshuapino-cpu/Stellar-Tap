@@ -16,7 +16,7 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Pantalla inicial */
+/* Pantallas iniciales */
 .overlay {
   position: fixed;
   inset: 0;
@@ -25,6 +25,7 @@ body {
   align-items: center;
   background: rgba(10, 10, 30, 0.9);
   transition: opacity 0.8s ease;
+  z-index: 10;
 }
 .overlay.hidden { display: none; }
 
@@ -33,6 +34,7 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 20px #9333ea;
+  max-width: 400px;
 }
 .primary {
   background: #3b82f6;
@@ -49,8 +51,11 @@ body {
 /* Juego principal */
 .hidden { display: none; }
 
-header {
-  margin-top: 1rem;
+.top-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
 }
 .coins {
   font-size: 2rem;
@@ -58,18 +63,43 @@ header {
   color: #facc15;
   text-shadow: 0 0 10px #facc15;
 }
-.sub { margin-bottom: 1.5rem; }
+.sub { margin-top: 0.3rem; }
 
 /* Planeta */
+.planet-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+}
 .planet {
-  font-size: 6rem;
-  background: none;
-  border: none;
+  width: 180px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 .planet:active {
-  transform: scale(0.85) rotate(10deg);
+  transform: scale(0.9) rotate(5deg);
+}
+
+/* Satélites */
+.satellites {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.satellite {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #d4d4d8;
+  box-shadow: 0 0 10px rgba(255,255,255,0.6);
+  animation: orbit 6s linear infinite;
+}
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
 }
 
 /* Efectos flotantes */
@@ -90,7 +120,7 @@ header {
 
 /* Tienda */
 .shop, .settings {
-  margin: 2rem auto;
+  margin: 1rem auto;
   max-width: 400px;
   background: #1e293b;
   padding: 1rem;
