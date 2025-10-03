@@ -19,11 +19,13 @@ const autoBtn = document.getElementById("upgrade-auto");
 const clickCostDisplay = document.getElementById("click-cost");
 const autoCostDisplay = document.getElementById("auto-cost");
 const autoCountDisplay = document.getElementById("auto-count");
+const resetBtn = document.getElementById("reset-btn");
 
 // Iniciar juego
 playBtn.addEventListener("click", () => {
   startScreen.classList.add("hidden");
   gameMain.classList.remove("hidden");
+  loadGame(); // Cargar progreso al entrar
 });
 
 // Click en planeta
@@ -31,6 +33,7 @@ planetBtn.addEventListener("click", () => {
   stars += starsPerClick;
   updateStars();
   spawnFloating(`+${starsPerClick} ⭐`);
+  saveGame();
 });
 
 // Comprar mejora de clic
@@ -38,9 +41,10 @@ clickBtn.addEventListener("click", () => {
   if (stars >= clickCost) {
     stars -= clickCost;
     starsPerClick++;
-    clickCost = Math.floor(clickCost * 1.5); // Aumento de dificultad
+    clickCost = Math.floor(clickCost * 1.5);
     updateStars();
     updateShop();
+    saveGame();
   }
 });
 
@@ -49,9 +53,25 @@ autoBtn.addEventListener("click", () => {
   if (stars >= autoCost) {
     stars -= autoCost;
     autoStars++;
-    autoCost = Math.floor(autoCost * 1.5); // Aumento de dificultad
+    autoCost = Math.floor(autoCost * 1.5);
     updateStars();
     updateShop();
+    saveGame();
+  }
+});
+
+// Reiniciar progreso
+resetBtn.addEventListener("click", () => {
+  if (confirm("¿Seguro que quieres reiniciar tu progreso?")) {
+    localStorage.removeItem("stellarSave");
+    stars = 0;
+    starsPerClick = 1;
+    autoStars = 0;
+    clickCost = 10;
+    autoCost = 50;
+    updateStars();
+    updateShop();
+    alert("Progreso reiniciado.");
   }
 });
 
@@ -61,8 +81,36 @@ setInterval(() => {
     stars += autoStars;
     updateStars();
     spawnFloating(`+${autoStars} ⭐`);
+    saveGame();
   }
 }, 1000);
+
+// Guardar juego
+function saveGame() {
+  const saveData = {
+    stars,
+    starsPerClick,
+    autoStars,
+    clickCost,
+    autoCost
+  };
+  localStorage.setItem("stellarSave", JSON.stringify(saveData));
+}
+
+// Cargar juego
+function loadGame() {
+  const data = localStorage.getItem("stellarSave");
+  if (data) {
+    const save = JSON.parse(data);
+    stars = save.stars || 0;
+    starsPerClick = save.starsPerClick || 1;
+    autoStars = save.autoStars || 0;
+    clickCost = save.clickCost || 10;
+    autoCost = save.autoCost || 50;
+    updateStars();
+    updateShop();
+  }
+}
 
 // --- Funciones auxiliares ---
 function updateStars() {

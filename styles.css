@@ -96,3 +96,19 @@ header {
   cursor: pointer;
 }
 .upgrade:hover { background: #3b82f6; }
+.settings {
+  margin-top: 2rem;
+  background: #312e81;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #fbbf24;
+}
+.settings h2 {
+  margin-bottom: 1rem;
+}
+.danger {
+  background: #dc2626;
+}
+.danger:hover {
+  background: #ef4444;
+}
