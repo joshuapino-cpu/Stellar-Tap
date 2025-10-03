@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stellar Tap v0.1</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Pantalla inicial -->
+  <div id="start-screen" class="overlay show">
+    <div class="card">
+      <h1>Stellar Tap 🌌</h1>
+      <p>Haz clic y recolecta estrellas.</p>
+      <button id="play-btn" class="primary">Jugar</button>
+      <p class="version">Versión 0.1</p>
+    </div>
+  </div>
+
+  <!-- Juego -->
+  <main id="game" class="hidden">
+    <header>
+      <div id="coins-display" class="coins">0</div>
+      <div class="sub">Estrellas recolectadas</div>
+    </header>
+
+    <section class="play-area">
+      <button id="planet-btn" class="planet" aria-label="Planeta">
+        🌍
+      </button>
+      <div id="effects" class="effects"></div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
