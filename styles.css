@@ -153,3 +153,43 @@ body {
 .danger:hover {
   background: #ef4444;
 }
+
+/* Canvas de fondo */
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Título en juego */
+.game-title {
+  font-size: 1.5rem;
+  color: #38bdf8;
+  text-shadow: 0 0 10px #38bdf8;
+}
+
+/* Meteorito */
+.meteorite {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  text-align: center;
+}
+.meteorite-body {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle at 30% 30%, #7f1d1d, #450a0a);
+  border-radius: 50%;
+  margin: auto;
+  box-shadow: 0 0 30px #ef4444;
+  cursor: pointer;
+}
+.meteorite-hp {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #ef4444;
+}
+
+.hidden { display: none; }

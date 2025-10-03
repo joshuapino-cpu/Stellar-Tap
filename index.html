@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stellar Tap v1.0</title>
+  <title>Stellar Tap v1.1</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="icon.png" />
 </head>
 <body>
+  <!-- Fondo canvas con estrellas fugaces -->
+  <canvas id="background"></canvas>
+
   <!-- Pantalla inicial -->
   <div id="start-screen" class="overlay show">
     <div class="card">
       <h1>Stellar Tap 🌌</h1>
       <p>Haz clic y recolecta estrellas para expandir tu imperio espacial.</p>
       <button id="play-btn" class="primary">Jugar</button>
-      <p class="version">Versión 1.0</p>
+      <p class="version">Versión 1.1</p>
     </div>
   </div>
 
@@ -21,8 +25,8 @@
   <div id="lore-screen" class="overlay hidden">
     <div class="card">
       <h2>🌠 Comienzo del Viaje</h2>
-      <p>En un rincón olvidado del cosmos, tu civilización descubrió que las estrellas son la clave para expandirse.</p>
-      <p>Haz clic sobre el planeta para recolectar energía estelar y construye satélites que trabajen por ti.</p>
+      <p>Tu civilización ha descubierto que las estrellas son la clave del poder.</p>
+      <p>Haz clic en el planeta, mejora tu poder y defiende tu galaxia de meteoritos.</p>
       <button id="start-game" class="primary">Comenzar</button>
     </div>
   </div>
@@ -30,6 +34,7 @@
   <!-- Juego -->
   <main id="game" class="hidden">
     <header class="top-bar">
+      <h1 class="game-title">Stellar Tap</h1>
       <div class="progress-box">
         <div id="coins-display" class="coins">0</div>
         <div class="sub">⭐ Estrellas recolectadas ⭐</div>
@@ -48,6 +53,12 @@
       <div id="effects" class="effects"></div>
     </section>
 
+    <!-- Meteorito evento -->
+    <div id="meteorite" class="meteorite hidden">
+      <div class="meteorite-body"></div>
+      <div id="meteorite-hp" class="meteorite-hp">HP: 0</div>
+    </div>
+
     <section class="shop">
       <h2>Mejoras</h2>
       <button id="upgrade-click" class="upgrade">
@@ -55,6 +66,13 @@
       </button>
       <button id="upgrade-auto" class="upgrade">
         Comprar Satélite (Costo: <span id="auto-cost">50</span>)
+      </button>
+    </section>
+
+    <section class="skills">
+      <h2>Habilidades</h2>
+      <button id="skill-boost" class="upgrade">
+        Doble Poder por 10s (Cooldown)
       </button>
     </section>
 
