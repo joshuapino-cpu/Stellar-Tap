@@ -25,7 +25,7 @@ const resetBtn = document.getElementById("reset-btn");
 playBtn.addEventListener("click", () => {
   startScreen.classList.add("hidden");
   gameMain.classList.remove("hidden");
-  loadGame(); // Cargar progreso al entrar
+  loadGame();
 });
 
 // Click en planeta
@@ -33,6 +33,8 @@ planetBtn.addEventListener("click", () => {
   stars += starsPerClick;
   updateStars();
   spawnFloating(`+${starsPerClick} ⭐`);
+  planetBtn.classList.add("clicked");
+  setTimeout(() => planetBtn.classList.remove("clicked"), 150);
   saveGame();
 });
 
@@ -75,7 +77,7 @@ resetBtn.addEventListener("click", () => {
   }
 });
 
-// Generar estrellas automáticas cada segundo
+// Generar estrellas automáticas
 setInterval(() => {
   if (autoStars > 0) {
     stars += autoStars;
@@ -87,13 +89,7 @@ setInterval(() => {
 
 // Guardar juego
 function saveGame() {
-  const saveData = {
-    stars,
-    starsPerClick,
-    autoStars,
-    clickCost,
-    autoCost
-  };
+  const saveData = { stars, starsPerClick, autoStars, clickCost, autoCost };
   localStorage.setItem("stellarSave", JSON.stringify(saveData));
 }
 
@@ -123,13 +119,12 @@ function updateShop() {
   autoCountDisplay.innerText = autoStars;
 }
 
-// Texto flotante
 function spawnFloating(text) {
   const el = document.createElement("div");
   el.className = "floating";
   el.innerText = text;
-  el.style.left = (50 + Math.random()*100) + "px";
-  el.style.color = "#facc15";
+  el.style.left = (Math.random() * 200 + 100) + "px";
+  el.style.color = ["#facc15","#a78bfa","#38bdf8","#f472b6"][Math.floor(Math.random()*4)];
   effects.appendChild(el);
   setTimeout(() => el.remove(), 1000);
 }

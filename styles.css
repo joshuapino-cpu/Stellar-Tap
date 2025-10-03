@@ -1,18 +1,30 @@
+/* Fondo estelar animado */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at center, #0f172a, #000);
-  color: #fff;
+  font-family: "Orbitron", sans-serif;
+  background: radial-gradient(circle at 50% 50%, #0a0a23, #000);
+  background-size: 400% 400%;
+  animation: spaceBackground 30s ease infinite;
+  color: #f8fafc;
   text-align: center;
+  overflow-x: hidden;
 }
 
+@keyframes spaceBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pantalla inicial */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background: rgba(10, 10, 30, 0.9);
+  transition: opacity 0.8s ease;
 }
 .overlay.hidden { display: none; }
 
@@ -23,89 +35,88 @@ body {
   box-shadow: 0 0 20px #9333ea;
 }
 .primary {
-  padding: 0.5rem 1.2rem;
-  font-size: 1.2rem;
-  border: none;
+  background: #3b82f6;
+  padding: 0.7rem 1.5rem;
   border-radius: 0.5rem;
-  background: #9333ea;
-  color: white;
+  border: none;
+  font-size: 1.2rem;
   cursor: pointer;
+  color: white;
+  transition: transform 0.2s;
 }
-.primary:hover { background: #a855f7; }
+.primary:hover { transform: scale(1.1); }
 
+/* Juego principal */
 .hidden { display: none; }
 
 header {
-  padding: 1rem;
+  margin-top: 1rem;
 }
 .coins {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
+  color: #facc15;
+  text-shadow: 0 0 10px #facc15;
 }
-.sub {
-  font-size: 1rem;
-  color: #a5b4fc;
-}
+.sub { margin-bottom: 1.5rem; }
 
-.play-area {
-  margin-top: 2rem;
-}
+/* Planeta */
 .planet {
   font-size: 6rem;
-  border: none;
   background: none;
+  border: none;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 0.2s ease;
 }
 .planet:active {
-  transform: scale(0.9);
+  transform: scale(0.85) rotate(10deg);
 }
 
+/* Efectos flotantes */
 .effects {
   position: relative;
-  width: 100%;
-  height: 150px;
-  margin-top: 1rem;
+  height: 100px;
 }
 .floating {
   position: absolute;
-  animation: floatUp 1s ease-out forwards;
+  font-size: 1.2rem;
+  animation: floatUp 1s ease forwards;
+  opacity: 0.9;
 }
 @keyframes floatUp {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-50px); }
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-50px); opacity: 0; }
 }
-.shop {
-  margin-top: 2rem;
-  background: #1e1b4b;
+
+/* Tienda */
+.shop, .settings {
+  margin: 2rem auto;
+  max-width: 400px;
+  background: #1e293b;
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 0 0 10px #9333ea;
+  box-shadow: 0 0 15px #9333ea;
+  transition: transform 0.3s ease;
 }
-.shop h2 {
-  margin-bottom: 1rem;
-}
+.shop:hover, .settings:hover { transform: scale(1.02); }
+
 .upgrade {
   display: block;
   margin: 0.5rem auto;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1.2rem;
   background: #2563eb;
   border: none;
   border-radius: 0.5rem;
   color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
 }
-.upgrade:hover { background: #3b82f6; }
-.settings {
-  margin-top: 2rem;
-  background: #312e81;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px #fbbf24;
+.upgrade:hover {
+  background: #3b82f6;
+  transform: scale(1.05);
 }
-.settings h2 {
-  margin-bottom: 1rem;
-}
+
 .danger {
   background: #dc2626;
 }
